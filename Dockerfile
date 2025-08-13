@@ -4,7 +4,7 @@ FROM python:3.9-slim
 # Set working directory
 WORKDIR /app
 
-# Install dependencies (بدون software-properties-common)
+# Install system dependencies (بدون software-properties-common)
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
@@ -21,5 +21,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy project files
 COPY . .
 
-# Command to run Streamlit app
+# Run Streamlit app
 CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
