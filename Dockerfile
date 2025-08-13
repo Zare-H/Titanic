@@ -19,5 +19,5 @@ COPY . /app
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# فرمان پیش‌فرض برای اجرای اپلیکیشن Streamlit
+# اجرای اپلیکیشن Streamlit روی پورت و آدرس مناسب
 CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
