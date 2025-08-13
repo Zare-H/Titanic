@@ -1,10 +1,10 @@
-# از تصویر پایه پایتون استفاده می‌کنیم
+# تصویر پایه سبک پایتون
 FROM python:3.9-slim
 
 # مسیر کاری در کانتینر
 WORKDIR /app
 
-# نصب پکیج‌های لازم
+# نصب پکیج‌های مورد نیاز سیستم (build tools و git)
 RUN apt-get update && apt-get install -y \
     build-essential \
     curl \
@@ -12,12 +12,12 @@ RUN apt-get update && apt-get install -y \
     gnupg2 \
     && rm -rf /var/lib/apt/lists/*
 
-# کپی کردن فایل‌های پروژه به کانتینر
+# کپی کردن تمام فایل‌های پروژه به کانتینر
 COPY . /app
 
-# نصب کتابخانه‌های پایتون
+# بروزرسانی pip و نصب کتابخانه‌های پایتون
 RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 
-# فرمان پیش‌فرض اجرای اپلیکیشن
-CMD ["streamlit", "run", "app.py"]
+# فرمان پیش‌فرض برای اجرای اپلیکیشن Streamlit
+CMD ["streamlit", "run", "app.py", "--server.port=7860", "--server.address=0.0.0.0"]
